@@ -1,6 +1,9 @@
 package br.ufscar.tokenlab
+import br.ufscar.tokenlab.Contact
 
 class User {
+
+	static hasMany = [contacts: Contact]
 
 	transient springSecurityService
 
