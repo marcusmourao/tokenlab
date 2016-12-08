@@ -1,11 +1,14 @@
 package br.ufscar.tokenlab
 
+import grails.plugin.springsecurity.annotation.Secured
 
+import java.security.Security
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
+@Secured('IS_AUTHENTICATED_FULLY')
 class ContactController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
