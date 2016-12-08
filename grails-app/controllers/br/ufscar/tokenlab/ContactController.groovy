@@ -10,12 +10,14 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 @Secured('IS_AUTHENTICATED_FULLY')
 class ContactController {
+    def springSecurityService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Contact.list(params), model:[contactInstanceCount: Contact.count()]
+        def user = springSecurityService.getCurrentUser()
+        def list = Contact.findAllByOwner(user)
+        respond list, model:[contactInstanceCount: list.size()]
     }
 
     def show(Contact contactInstance) {
@@ -32,6 +34,8 @@ class ContactController {
             notFound()
             return
         }
+
+        contactInstance.owner = springSecurityService.getCurrentUser()
 
         if (contactInstance.hasErrors()) {
             respond contactInstance.errors, view:'create'
