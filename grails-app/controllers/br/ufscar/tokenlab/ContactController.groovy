@@ -14,7 +14,7 @@ class ContactController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
+    def index() {
         def user = springSecurityService.getCurrentUser()
         def list = Contact.findAllByOwner(user)
         respond list, model:[contactInstanceCount: list.size()]
@@ -36,11 +36,6 @@ class ContactController {
         }
 
         contactInstance.owner = springSecurityService.getCurrentUser()
-
-        if (contactInstance.hasErrors()) {
-            respond contactInstance.errors, view:'create'
-            return
-        }
 
         contactInstance.save flush:true
 
