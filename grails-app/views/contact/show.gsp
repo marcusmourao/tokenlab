@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'contact.label', default: 'Contact')}" />
+		<g:set var="entityName" value="${message(code: 'contact.label', default: 'Contato')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -12,7 +12,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+				<li><g:link class="list" action="index"><g:message code="default.list.label" args="" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
@@ -68,15 +68,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${contactInstance?.owner}">
-				<li class="fieldcontain">
-					<span id="owner-label" class="property-label"><g:message code="contact.owner.label" default="Owner" /></span>
-					
-						<span class="property-value" aria-labelledby="owner-label"><g:link controller="user" action="show" id="${contactInstance?.owner?.id}">${contactInstance?.owner?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
+
 			</ol>
 			<g:form url="[resource:contactInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
