@@ -35,6 +35,16 @@ class ContactController {
             return
         }
 
+        String place = params.place
+        String zipcode = params.zipcode
+        String neighborhood = params.neighborhood
+        String complement = params.complement
+        String number = params.number
+        String city = params.city
+        String state = params.state
+
+        contactInstance.address = place + ", " + number + " - " + neighborhood + " - " + complement + " - " + city + "-" + state + " - " + zipcode
+
         contactInstance.owner = springSecurityService.getCurrentUser()
 
         contactInstance.save flush:true
