@@ -36,7 +36,7 @@
 				<li class="fieldcontain">
 					<span id="birthday-label" class="property-label"><g:message code="contact.birthday.label" default="Birthday" /></span>
 					
-						<span class="property-value" aria-labelledby="birthday-label"><g:formatDate date="${contactInstance?.birthday}" /></span>
+						<span class="property-value" aria-labelledby="birthday-label"><g:formatDate format="dd/MM/yyyy" date="${contactInstance?.birthday}" /></span>
 					
 				</li>
 				</g:if>
